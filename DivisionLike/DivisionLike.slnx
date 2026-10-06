@@ -1,0 +1,7 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="LeanTransition.csproj" />
+  <Project Path="LeanCommon.csproj" />
+  <Project Path="WanzyeeStudio.Runtime.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+</Solution>
