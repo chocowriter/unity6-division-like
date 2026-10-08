@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 #if STARTER_ASSETS_PACKAGES_CHECKED
-using Cinemachine;
+
 #endif
 
 namespace StarterAssets
@@ -48,7 +48,7 @@ namespace StarterAssets
 
             if (!vcam)
             {
-                if (TryLocatePrefab(CinemachineVirtualCameraName, new string[]{prefabFolder}, new[] { typeof(CinemachineVirtualCamera) }, out GameObject vcamPrefab, out string _))
+                if (TryLocatePrefab(CinemachineVirtualCameraName, new string[]{prefabFolder}, new[] { typeof(Unity.Cinemachine.CinemachineVirtualCamera) }, out GameObject vcamPrefab, out string _))
                 {
                     HandleInstantiatingPrefab(vcamPrefab, out vcam);
                     _cinemachineVirtualCamera = vcam;
@@ -84,7 +84,7 @@ namespace StarterAssets
             if (mainCameras.Length < 1)
             {
                 // if there are no MainCameras, add one
-                if (TryLocatePrefab(MainCameraPrefabName, new string[]{inFolder}, new[] { typeof(CinemachineBrain), typeof(Camera) }, out GameObject camera, out string _))
+                if (TryLocatePrefab(MainCameraPrefabName, new string[]{inFolder}, new[] { typeof(Unity.Cinemachine.CinemachineBrain), typeof(Camera) }, out GameObject camera, out string _))
                 {
                     HandleInstantiatingPrefab(camera, out _);
                 }
@@ -96,8 +96,8 @@ namespace StarterAssets
             else
             {
                 // make sure the found camera has a cinemachine brain (we only need 1)
-                if (!mainCameras[0].TryGetComponent(out CinemachineBrain cinemachineBrain))
-                    mainCameras[0].AddComponent<CinemachineBrain>();
+                if (!mainCameras[0].TryGetComponent(out Unity.Cinemachine.CinemachineBrain cinemachineBrain))
+                    mainCameras[0].AddComponent<Unity.Cinemachine.CinemachineBrain>();
             }
         }
 
@@ -105,7 +105,7 @@ namespace StarterAssets
             GameObject cinemachineVirtualCamera)
         {
             var serializedObject =
-                new SerializedObject(cinemachineVirtualCamera.GetComponent<CinemachineVirtualCamera>());
+                new SerializedObject(cinemachineVirtualCamera.GetComponent<Unity.Cinemachine.CinemachineVirtualCamera>());
             var serializedProperty = serializedObject.FindProperty("m_Follow");
             serializedProperty.objectReferenceValue = target.transform;
             serializedObject.ApplyModifiedProperties();
